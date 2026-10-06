@@ -1,0 +1,253 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="950" height="580" viewBox="0 0 950 580" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+<style>
+  .a { animation-duration: 16s; animation-iteration-count: infinite; animation-timing-function: linear; }
+  svg:hover .a { animation-play-state: paused; }
+  #badge { opacity: 0; }
+  svg:hover #badge { opacity: 1; }
+  svg:hover #hint { opacity: 0; }
+
+  .mptr{animation-name:mptr} .nptr{animation-name:nptr} .lastptr{animation-name:lastptr}
+  .mfade{animation-name:mfade} .nfade{animation-name:nfade}
+  .rv25{animation-name:rv25} .rv375{animation-name:rv375} .rv50{animation-name:rv50}
+  .rv75{animation-name:rv75} .rv875{animation-name:rv875}
+  .s0{animation-name:s0} .s1{animation-name:s1} .s2{animation-name:s2} .s3{animation-name:s3}
+  .s4{animation-name:s4} .s5{animation-name:s5} .s6{animation-name:s6} .s7{animation-name:s7}
+  .w01{animation-name:w01} .w23{animation-name:w23} .w47{animation-name:w47}
+  .w012{animation-name:w012} .w345{animation-name:w345} .w45{animation-name:w45}
+  .w123{animation-name:w123} .w56{animation-name:w56} .s1s3{animation-name:s1s3}
+  .bar{animation-name:bar; transform-box:fill-box; transform-origin:left center}
+
+  /* ---- ponteiros: 8 estados, mantem e desliza ---- */
+  @keyframes mptr {
+    0%,9.375%{transform:translate(0,0)}        12.5%,21.875%{transform:translate(0,0)}
+    25%,34.375%{transform:translate(-48px,0)}  37.5%,46.875%{transform:translate(-48px,0)}
+    50%,100%{transform:translate(-48px,0)} }
+  @keyframes nptr {
+    0%,9.375%{transform:translate(0,0)}        12.5%,21.875%{transform:translate(0,0)}
+    25%,34.375%{transform:translate(0,0)}      37.5%,46.875%{transform:translate(-48px,0)}
+    50%,59.375%{transform:translate(-48px,0)}  62.5%,71.875%{transform:translate(-48px,0)}
+    75%,84.375%{transform:translate(-96px,0)}  87.5%,100%{transform:translate(-96px,0)} }
+  @keyframes lastptr {
+    0%,9.375%{transform:translate(0,0)}        12.5%,21.875%{transform:translate(0,0)}
+    25%,34.375%{transform:translate(-48px,0)}  37.5%,46.875%{transform:translate(-96px,0)}
+    50%,59.375%{transform:translate(-144px,0)} 62.5%,71.875%{transform:translate(-144px,0)}
+    75%,84.375%{transform:translate(-192px,0)} 87.5%,100%{transform:translate(-240px,0)} }
+
+  @keyframes mfade { 0%,49%{opacity:1}   50%,100%{opacity:0} }
+  @keyframes nfade { 0%,86.5%{opacity:1} 87.5%,100%{opacity:0} }
+
+  /* ---- celulas que vao sendo escritas ---- */
+  @keyframes rv25  { 0%,24%{opacity:0}   25%,100%{opacity:1} }
+  @keyframes rv375 { 0%,36.5%{opacity:0} 37.5%,100%{opacity:1} }
+  @keyframes rv50  { 0%,49%{opacity:0}   50%,100%{opacity:1} }
+  @keyframes rv75  { 0%,74%{opacity:0}   75%,100%{opacity:1} }
+  @keyframes rv875 { 0%,86.5%{opacity:0} 87.5%,100%{opacity:1} }
+
+  /* ---- janelas de um passo so ---- */
+  @keyframes s0 { 0%,12.4%{opacity:1}   12.5%,100%{opacity:0} }
+  @keyframes s1 { 0%,12.4%{opacity:0}   12.5%,24.9%{opacity:1} 25%,100%{opacity:0} }
+  @keyframes s2 { 0%,24.9%{opacity:0}   25%,37.4%{opacity:1}   37.5%,100%{opacity:0} }
+  @keyframes s3 { 0%,37.4%{opacity:0}   37.5%,49.9%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes s4 { 0%,49.9%{opacity:0}   50%,62.4%{opacity:1}   62.5%,100%{opacity:0} }
+  @keyframes s5 { 0%,62.4%{opacity:0}   62.5%,74.9%{opacity:1} 75%,100%{opacity:0} }
+  @keyframes s6 { 0%,74.9%{opacity:0}   75%,87.4%{opacity:1}   87.5%,100%{opacity:0} }
+  @keyframes s7 { 0%,87.4%{opacity:0}   87.5%,100%{opacity:1} }
+
+  /* ---- janelas de varios passos ---- */
+  @keyframes w01  { 0%,24.9%{opacity:1} 25%,100%{opacity:0} }
+  @keyframes w23  { 0%,24.9%{opacity:0} 25%,49.9%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes w47  { 0%,49.9%{opacity:0} 50%,100%{opacity:1} }
+  @keyframes w012 { 0%,37.4%{opacity:1} 37.5%,100%{opacity:0} }
+  @keyframes w345 { 0%,37.4%{opacity:0} 37.5%,74.9%{opacity:1} 75%,100%{opacity:0} }
+  @keyframes w45  { 0%,49.9%{opacity:0} 50%,74.9%{opacity:1} 75%,100%{opacity:0} }
+  @keyframes w123 { 0%,12.4%{opacity:0} 12.5%,49.9%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes w56  { 0%,62.4%{opacity:0} 62.5%,87.4%{opacity:1} 87.5%,100%{opacity:0} }
+  @keyframes s1s3 { 0%,12.4%{opacity:0} 12.5%,24.9%{opacity:1} 25%,37.4%{opacity:0}
+                    37.5%,49.9%{opacity:1} 50%,100%{opacity:0} }
+
+  @keyframes bar { 0%{transform:scaleX(0)} 100%{transform:scaleX(1)} }
+</style>
+
+<rect width="950" height="580" fill="#ffffff"/>
+<text x="14" y="24" font-size="15" font-weight="bold" fill="#111827">Merge Sorted Array &#8212; solu&#231;&#227;o completa, os dois while e as tr&#234;s vari&#225;veis</text>
+<text id="hint" x="14" y="42" font-size="10" fill="#64748b">nums1=[4,9,0,0,0] m=2 &#183; nums2=[1,2,7] n=3 &#183; 8 passos &#183; 2s cada &#183; passe o mouse em cima para PAUSAR</text>
+<g id="badge">
+  <rect x="12" y="31" width="104" height="15" rx="3" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="18" y="42" font-size="10" font-weight="bold" fill="#b45309">&#9208; PAUSADO</text>
+  <text x="126" y="42" font-size="10" fill="#64748b">tire o mouse para continuar de onde parou</text>
+</g>
+
+<!-- ============ ponteiro m ============ -->
+<g class="a mfade"><g class="a mptr">
+  <text x="142" y="84" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">m-1</text>
+  <text x="142" y="99" font-size="12" fill="#2563eb" text-anchor="middle">&#9660;</text>
+</g></g>
+
+<!-- ============ nums1 ============ -->
+<text x="14" y="132" font-size="11" font-weight="bold" fill="#111827">nums1</text>
+<rect x="70"  y="104" width="48" height="44" rx="3" fill="#f1f5f9" stroke="#94a3b8"/><text x="74"  y="116" font-size="8" fill="#94a3b8">0</text><text x="94"  y="134" font-size="16" fill="#111827" text-anchor="middle">4</text>
+<rect x="118" y="104" width="48" height="44" rx="3" fill="#f1f5f9" stroke="#94a3b8"/><text x="122" y="116" font-size="8" fill="#94a3b8">1</text><text x="142" y="134" font-size="16" fill="#111827" text-anchor="middle">9</text>
+<rect x="166" y="104" width="48" height="44" rx="3" fill="#ffffff" stroke="#cbd5e1"/><text x="170" y="116" font-size="8" fill="#cbd5e1">2</text><text x="190" y="134" font-size="16" fill="#cbd5e1" text-anchor="middle">0</text>
+<rect x="214" y="104" width="48" height="44" rx="3" fill="#ffffff" stroke="#cbd5e1"/><text x="218" y="116" font-size="8" fill="#cbd5e1">3</text><text x="238" y="134" font-size="16" fill="#cbd5e1" text-anchor="middle">0</text>
+<rect x="262" y="104" width="48" height="44" rx="3" fill="#ffffff" stroke="#cbd5e1"/><text x="266" y="116" font-size="8" fill="#cbd5e1">4</text><text x="286" y="134" font-size="16" fill="#cbd5e1" text-anchor="middle">0</text>
+
+<g class="a rv25" opacity="0"><rect x="262" y="104" width="48" height="44" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text x="266" y="116" font-size="8" fill="#2563eb">4</text><text x="286" y="134" font-size="16" font-weight="bold" fill="#1d4ed8" text-anchor="middle">9</text></g>
+<g class="a rv375" opacity="0"><rect x="214" y="104" width="48" height="44" rx="3" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/><text x="218" y="116" font-size="8" fill="#ea580c">3</text><text x="238" y="134" font-size="16" font-weight="bold" fill="#c2410c" text-anchor="middle">7</text></g>
+<g class="a rv50" opacity="0"><rect x="166" y="104" width="48" height="44" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text x="170" y="116" font-size="8" fill="#2563eb">2</text><text x="190" y="134" font-size="16" font-weight="bold" fill="#1d4ed8" text-anchor="middle">4</text></g>
+<g class="a rv75" opacity="0"><rect x="118" y="104" width="48" height="44" rx="3" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/><text x="122" y="116" font-size="8" fill="#ea580c">1</text><text x="142" y="134" font-size="16" font-weight="bold" fill="#c2410c" text-anchor="middle">2</text></g>
+<g class="a rv875" opacity="0"><rect x="70" y="104" width="48" height="44" rx="3" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/><text x="74" y="116" font-size="8" fill="#ea580c">0</text><text x="94" y="134" font-size="16" font-weight="bold" fill="#c2410c" text-anchor="middle">1</text></g>
+
+<!-- ============ ponteiro last ============ -->
+<g class="a lastptr">
+  <text x="286" y="164" font-size="12" fill="#16a34a" text-anchor="middle">&#9650;</text>
+  <text x="286" y="178" font-size="11" font-weight="bold" fill="#16a34a" text-anchor="middle">last</text>
+</g>
+
+<!-- ============ ponteiro n ============ -->
+<g class="a nfade"><g class="a nptr">
+  <text x="190" y="202" font-size="11" font-weight="bold" fill="#ea580c" text-anchor="middle">n-1</text>
+  <text x="190" y="217" font-size="12" fill="#ea580c" text-anchor="middle">&#9660;</text>
+</g></g>
+
+<!-- ============ nums2 ============ -->
+<text x="14" y="250" font-size="11" font-weight="bold" fill="#c2410c">nums2</text>
+<rect x="70"  y="222" width="48" height="44" rx="3" fill="#fff7ed" stroke="#fb923c"/><text x="74"  y="234" font-size="8" fill="#fdba74">0</text><text x="94"  y="252" font-size="16" fill="#c2410c" text-anchor="middle">1</text>
+<rect x="118" y="222" width="48" height="44" rx="3" fill="#fff7ed" stroke="#fb923c"/><text x="122" y="234" font-size="8" fill="#fdba74">1</text><text x="142" y="252" font-size="16" fill="#c2410c" text-anchor="middle">2</text>
+<rect x="166" y="222" width="48" height="44" rx="3" fill="#fff7ed" stroke="#fb923c"/><text x="170" y="234" font-size="8" fill="#fdba74">2</text><text x="190" y="252" font-size="16" fill="#c2410c" text-anchor="middle">7</text>
+
+<g class="a rv375" opacity="0"><rect x="166" y="222" width="48" height="44" rx="3" fill="#ffffff" stroke="#e5e7eb"/><text x="190" y="252" font-size="16" fill="#d1d5db" text-anchor="middle">7</text><line x1="172" y1="262" x2="208" y2="226" stroke="#e5e7eb" stroke-width="2"/></g>
+<g class="a rv75" opacity="0"><rect x="118" y="222" width="48" height="44" rx="3" fill="#ffffff" stroke="#e5e7eb"/><text x="142" y="252" font-size="16" fill="#d1d5db" text-anchor="middle">2</text><line x1="124" y1="262" x2="160" y2="226" stroke="#e5e7eb" stroke-width="2"/></g>
+<g class="a rv875" opacity="0"><rect x="70" y="222" width="48" height="44" rx="3" fill="#ffffff" stroke="#e5e7eb"/><text x="94" y="252" font-size="16" fill="#d1d5db" text-anchor="middle">1</text><line x1="76" y1="262" x2="112" y2="226" stroke="#e5e7eb" stroke-width="2"/></g>
+
+<!-- ============ painel de variaveis ============ -->
+<rect x="330" y="80" width="170" height="124" rx="5" fill="#fafafa" stroke="#e5e7eb"/>
+<text x="338" y="96" font-size="9" fill="#94a3b8">VARI&#193;VEIS AGORA</text>
+
+<text x="358" y="121" font-size="13" font-weight="bold" fill="#2563eb" text-anchor="end">m</text>
+<rect x="364" y="104" width="44" height="24" rx="3" fill="#ffffff" stroke="#2563eb"/>
+<g class="a w01"><text x="386" y="121" font-size="14" font-weight="bold" fill="#1d4ed8" text-anchor="middle">2</text></g>
+<g class="a w23" opacity="0"><text x="386" y="121" font-size="14" font-weight="bold" fill="#1d4ed8" text-anchor="middle">1</text></g>
+<g class="a w47" opacity="0"><text x="386" y="121" font-size="14" font-weight="bold" fill="#dc2626" text-anchor="middle">0</text></g>
+<text x="414" y="118" font-size="8" fill="#64748b">quantos faltam</text>
+<text x="414" y="127" font-size="8" fill="#64748b">em nums1</text>
+
+<text x="358" y="153" font-size="13" font-weight="bold" fill="#ea580c" text-anchor="end">n</text>
+<rect x="364" y="136" width="44" height="24" rx="3" fill="#ffffff" stroke="#ea580c"/>
+<g class="a w012"><text x="386" y="153" font-size="14" font-weight="bold" fill="#c2410c" text-anchor="middle">3</text></g>
+<g class="a w345" opacity="0"><text x="386" y="153" font-size="14" font-weight="bold" fill="#c2410c" text-anchor="middle">2</text></g>
+<g class="a s6" opacity="0"><text x="386" y="153" font-size="14" font-weight="bold" fill="#c2410c" text-anchor="middle">1</text></g>
+<g class="a s7" opacity="0"><text x="386" y="153" font-size="14" font-weight="bold" fill="#dc2626" text-anchor="middle">0</text></g>
+<text x="414" y="150" font-size="8" fill="#64748b">quantos faltam</text>
+<text x="414" y="159" font-size="8" fill="#64748b">em nums2</text>
+
+<text x="358" y="185" font-size="12" font-weight="bold" fill="#16a34a" text-anchor="end">last</text>
+<rect x="364" y="168" width="44" height="24" rx="3" fill="#ffffff" stroke="#16a34a"/>
+<g class="a w01"><text x="386" y="185" font-size="14" font-weight="bold" fill="#15803d" text-anchor="middle">4</text></g>
+<g class="a s2" opacity="0"><text x="386" y="185" font-size="14" font-weight="bold" fill="#15803d" text-anchor="middle">3</text></g>
+<g class="a s3" opacity="0"><text x="386" y="185" font-size="14" font-weight="bold" fill="#15803d" text-anchor="middle">2</text></g>
+<g class="a w45" opacity="0"><text x="386" y="185" font-size="14" font-weight="bold" fill="#15803d" text-anchor="middle">1</text></g>
+<g class="a s6" opacity="0"><text x="386" y="185" font-size="14" font-weight="bold" fill="#15803d" text-anchor="middle">0</text></g>
+<g class="a s7" opacity="0"><text x="386" y="185" font-size="14" font-weight="bold" fill="#dc2626" text-anchor="middle">-1</text></g>
+<text x="414" y="182" font-size="8" fill="#64748b">onde escrever</text>
+<text x="414" y="191" font-size="8" fill="#64748b">em nums1</text>
+
+<!-- ============ codigo ============ -->
+<rect x="515" y="82" width="420" height="322" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+
+<g class="a s0"><rect x="521" y="86"  width="245" height="19" rx="3" fill="#fef3c7"/></g>
+<g class="a w123" opacity="0"><rect x="521" y="124" width="245" height="19" rx="3" fill="#e0e7ff"/></g>
+<g class="a s4"  opacity="0"><rect x="521" y="124" width="245" height="19" rx="3" fill="#fee2e2"/></g>
+<g class="a w123" opacity="0"><rect x="521" y="143" width="245" height="19" rx="3" fill="#e0e7ff"/></g>
+<g class="a s1s3" opacity="0"><rect x="521" y="162" width="245" height="38" rx="3" fill="#dbeafe"/></g>
+<g class="a s2"  opacity="0"><rect x="521" y="219" width="245" height="38" rx="3" fill="#ffedd5"/></g>
+<g class="a w123" opacity="0"><rect x="521" y="257" width="245" height="19" rx="3" fill="#dcfce7"/></g>
+<g class="a w56" opacity="0"><rect x="521" y="295" width="245" height="19" rx="3" fill="#ffedd5"/></g>
+<g class="a s7"  opacity="0"><rect x="521" y="295" width="245" height="19" rx="3" fill="#fee2e2"/></g>
+<g class="a w56" opacity="0"><rect x="521" y="314" width="245" height="38" rx="3" fill="#ffedd5"/></g>
+<g class="a s7"  opacity="0"><rect x="521" y="371" width="245" height="19" rx="3" fill="#dcfce7"/></g>
+
+<text x="525" y="100" font-size="11" fill="#b45309">last = m + n - 1</text>
+<text x="525" y="138" font-size="11" fill="#111827">while m &gt; 0 and n &gt; 0:</text>
+<text x="525" y="157" font-size="11" fill="#111827">    if nums1[m - 1] &gt; nums2[n - 1]:</text>
+<text x="525" y="176" font-size="11" fill="#1d4ed8">        nums1[last] = nums1[m - 1]</text>
+<text x="525" y="195" font-size="11" fill="#1d4ed8">        m -= 1</text>
+<text x="525" y="214" font-size="11" fill="#111827">    else:</text>
+<text x="525" y="233" font-size="11" fill="#c2410c">        nums1[last] = nums2[n - 1]</text>
+<text x="525" y="252" font-size="11" fill="#c2410c">        n -= 1</text>
+<text x="525" y="271" font-size="11" fill="#15803d">    last -= 1</text>
+<text x="525" y="309" font-size="11" fill="#111827">while n &gt; 0:</text>
+<text x="525" y="328" font-size="11" fill="#c2410c">    nums1[last] = nums2[n - 1]</text>
+<text x="525" y="347" font-size="11" fill="#c2410c">    n, last = n - 1, last - 1</text>
+<text x="525" y="385" font-size="11" fill="#111827">print(nums1)</text>
+
+<line x1="784" y1="88"  x2="784" y2="104" stroke="#f59e0b" stroke-width="2"/>
+<text x="792" y="100" font-size="9" fill="#b45309">INIT</text>
+<line x1="784" y1="126" x2="784" y2="275" stroke="#6366f1" stroke-width="2"/>
+<text x="792" y="196" font-size="9" font-weight="bold" fill="#4338ca">LOOP 1</text>
+<text x="792" y="208" font-size="8" fill="#6366f1">compara os dois</text>
+<line x1="784" y1="297" x2="784" y2="351" stroke="#fb923c" stroke-width="2"/>
+<text x="792" y="322" font-size="9" font-weight="bold" fill="#c2410c">LOOP 2</text>
+<text x="792" y="334" font-size="8" fill="#ea580c">s&#243; copia o resto</text>
+<line x1="784" y1="373" x2="784" y2="389" stroke="#16a34a" stroke-width="2"/>
+<text x="792" y="385" font-size="9" fill="#15803d">SA&#205;DA</text>
+
+<!-- ============ barra de progresso ============ -->
+<rect x="20" y="414" width="910" height="4" rx="2" fill="#e5e7eb"/>
+<rect class="a bar" x="20" y="414" width="910" height="4" rx="2" fill="#2563eb"/>
+<line x1="20"     y1="411" x2="20"     y2="421" stroke="#cbd5e1"/><text x="20"     y="432" font-size="8" fill="#94a3b8" text-anchor="middle">0</text>
+<line x1="133.75" y1="411" x2="133.75" y2="421" stroke="#cbd5e1"/><text x="133.75" y="432" font-size="8" fill="#94a3b8" text-anchor="middle">1</text>
+<line x1="247.5"  y1="411" x2="247.5"  y2="421" stroke="#cbd5e1"/><text x="247.5"  y="432" font-size="8" fill="#94a3b8" text-anchor="middle">2</text>
+<line x1="361.25" y1="411" x2="361.25" y2="421" stroke="#cbd5e1"/><text x="361.25" y="432" font-size="8" fill="#94a3b8" text-anchor="middle">3</text>
+<line x1="475"    y1="411" x2="475"    y2="421" stroke="#cbd5e1"/><text x="475"    y="432" font-size="8" fill="#94a3b8" text-anchor="middle">4</text>
+<line x1="588.75" y1="411" x2="588.75" y2="421" stroke="#cbd5e1"/><text x="588.75" y="432" font-size="8" fill="#94a3b8" text-anchor="middle">5</text>
+<line x1="702.5"  y1="411" x2="702.5"  y2="421" stroke="#cbd5e1"/><text x="702.5"  y="432" font-size="8" fill="#94a3b8" text-anchor="middle">6</text>
+<line x1="816.25" y1="411" x2="816.25" y2="421" stroke="#cbd5e1"/><text x="816.25" y="432" font-size="8" fill="#94a3b8" text-anchor="middle">7</text>
+<line x1="930"    y1="411" x2="930"    y2="421" stroke="#cbd5e1"/>
+
+<!-- ============ painel de decisao ============ -->
+<g class="a s0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#b45309">PASSO 0  &#183;  INIT</text>
+  <text x="20" y="480" font-size="12" fill="#111827">last = m + n - 1   =   2 + 3 - 1   =   4</text>
+  <text x="20" y="500" font-size="12" fill="#475569">last come&#231;a no &#218;LTIMO &#237;ndice de nums1. Vamos preencher de tr&#225;s pra frente, a&#237; nunca sobrescrevo nada que ainda preciso.</text>
+</g>
+<g class="a s1" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#4338ca">PASSO 1  &#183;  LOOP 1        m=2   n=3   last=4</text>
+  <text x="20" y="480" font-size="12" fill="#111827">nums1[m-1] &gt; nums2[n-1]   &#8594;   nums1[1]=9  &gt;  nums2[2]=7  ?    SIM   &#8594;   ramo <tspan font-weight="bold" fill="#1d4ed8">if</tspan></text>
+  <text x="20" y="500" font-size="12" fill="#1d4ed8">nums1[4] = 9        m: 2&#8594;1        last: 4&#8594;3            <tspan fill="#ea580c">n fica parado</tspan></text>
+</g>
+<g class="a s2" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#4338ca">PASSO 2  &#183;  LOOP 1        m=1   n=3   last=3</text>
+  <text x="20" y="480" font-size="12" fill="#111827">nums1[0]=4  &gt;  nums2[2]=7  ?    N&#195;O   &#8594;   ramo <tspan font-weight="bold" fill="#c2410c">else</tspan></text>
+  <text x="20" y="500" font-size="12" fill="#c2410c">nums1[3] = 7        n: 3&#8594;2        last: 3&#8594;2            <tspan fill="#2563eb">m fica parado</tspan></text>
+</g>
+<g class="a s3" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#4338ca">PASSO 3  &#183;  LOOP 1        m=1   n=2   last=2</text>
+  <text x="20" y="480" font-size="12" fill="#111827">nums1[0]=4  &gt;  nums2[1]=2  ?    SIM   &#8594;   ramo <tspan font-weight="bold" fill="#1d4ed8">if</tspan></text>
+  <text x="20" y="500" font-size="12" fill="#1d4ed8">nums1[2] = 4        m: 1&#8594;0        last: 2&#8594;1            <tspan fill="#ea580c">n fica parado</tspan></text>
+</g>
+<g class="a s4" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#dc2626">PASSO 4  &#183;  O LOOP 1 MORRE        m=0   n=2   last=1</text>
+  <text x="20" y="480" font-size="12" fill="#111827">while m &gt; 0 and n &gt; 0   &#8594;   <tspan fill="#dc2626">0 &gt; 0 &#233; FALSO</tspan>   &#8594;   sai do primeiro while</text>
+  <text x="20" y="500" font-size="12" fill="#475569">Mas <tspan font-weight="bold" fill="#ea580c">n=2</tspan>: sobraram 2 n&#250;meros em nums2 sem copiar. <tspan font-weight="bold">&#201; exatamente por isso que existe o segundo while.</tspan></text>
+</g>
+<g class="a s5" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#c2410c">PASSO 5  &#183;  LOOP 2        m=0   n=2   last=1</text>
+  <text x="20" y="480" font-size="12" fill="#111827">while n &gt; 0   &#8594;   2 &gt; 0 VERDADE.   Aqui n&#227;o tem compara&#231;&#227;o: nums1 acabou, ent&#227;o &#233; s&#243; copiar.</text>
+  <text x="20" y="500" font-size="12" fill="#c2410c">nums1[1] = nums2[1] = 2        n: 2&#8594;1        last: 1&#8594;0</text>
+</g>
+<g class="a s6" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#c2410c">PASSO 6  &#183;  LOOP 2        m=0   n=1   last=0</text>
+  <text x="20" y="480" font-size="12" fill="#111827">while n &gt; 0   &#8594;   1 &gt; 0 VERDADE</text>
+  <text x="20" y="500" font-size="12" fill="#c2410c">nums1[0] = nums2[0] = 1        n: 1&#8594;0        last: 0&#8594;-1</text>
+</g>
+<g class="a s7" opacity="0">
+  <text x="20" y="460" font-size="12" font-weight="bold" fill="#15803d">PASSO 7  &#183;  FIM        m=0   n=0   last=-1</text>
+  <text x="20" y="480" font-size="12" fill="#111827">while n &gt; 0   &#8594;   <tspan fill="#dc2626">0 &gt; 0 FALSO</tspan>   &#8594;   print(nums1)   &#8594;   <tspan font-weight="bold" fill="#15803d">[1, 2, 4, 7, 9]</tspan></text>
+  <text x="20" y="500" font-size="12" fill="#475569">last virou <tspan font-weight="bold" fill="#dc2626">-1</tspan>, que seria &#237;ndice inv&#225;lido &#8212; mas o loop j&#225; tinha parado, ent&#227;o esse valor nunca &#233; usado.</text>
+</g>
+
+<line x1="20" y1="516" x2="930" y2="516" stroke="#e5e7eb"/>
+<text x="20" y="534" font-size="10" fill="#475569"><tspan font-weight="bold" fill="#2563eb">m</tspan> e <tspan font-weight="bold" fill="#ea580c">n</tspan> N&#195;O s&#227;o &#237;ndices, s&#227;o CONTADORES de quantos elementos ainda faltam. O &#237;ndice &#233; <tspan font-weight="bold">m-1</tspan> e <tspan font-weight="bold">n-1</tspan> &#8212; por isso o -1 aparece em toda linha.</text>
+<text x="20" y="550" font-size="10" fill="#475569"><tspan font-weight="bold" fill="#4338ca">LOOP 1</tspan> compara os dois arrays e s&#243; para quando UM deles acaba. <tspan font-weight="bold" fill="#c2410c">LOOP 2</tspan> existe porque pode sobrar coisa em nums2 &#8212; se sobrar em nums1, j&#225; est&#225; no lugar certo e n&#227;o precisa mexer.</text>
+<text x="20" y="566" font-size="10" fill="#475569"><tspan font-weight="bold" fill="#16a34a">last</tspan> anda em TODA volta dos dois loops (est&#225; fora do if). <tspan font-weight="bold" fill="#2563eb">m</tspan> andou 2x e <tspan font-weight="bold" fill="#ea580c">n</tspan> andou 1x no loop 1 &#8212; quem decide &#233; o if, lendo os dados. Da&#237; while e n&#227;o for.</text>
+</svg>
